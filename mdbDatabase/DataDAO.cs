@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.OleDb;
 
 namespace mdbDatabase
@@ -19,7 +20,7 @@ namespace mdbDatabase
 
 			string[] value;
 			value = new string[4];
-			int id = 0;
+			int counter = 0;
 			while (dbDataReader.Read())
 			{
 				for (int i = 0; i < 4; i++)
@@ -31,8 +32,10 @@ namespace mdbDatabase
 					}
 				}
 				db.Add(new DataDTO(value[0], value[1], value[2], value[3]));
-				id++;
+				counter++;
 			}
+
+			Console.WriteLine("{0} records:\n", counter);
 
 			dbConnection.Close();
 		}
